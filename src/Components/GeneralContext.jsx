@@ -36,7 +36,7 @@ export const GeneralProvider = ({children}) => {
     const instance = axios.create();
     instance.defaults.headers.common['Authorization'] = token;
     axios.defaults.headers.common['Authorization'] = token;
-    
+
     useEffect(() =>{
         localStorage.setItem("LoginUser", JSON.stringify(loginUser))
     }, [loginUser]);
@@ -47,7 +47,7 @@ export const GeneralProvider = ({children}) => {
     useEffect(() =>{
         localStorage.setItem("token", JSON.stringify(token))
     }, [token]);
-    
+
     const [sneakers, setSneakers] = useState([]);
     const [hodies, setHodies] = useState([]);
     const [tShirts, setTshirts] = useState([]);
@@ -109,6 +109,87 @@ export const GeneralProvider = ({children}) => {
                     } else return itemInCart
             }))
         }
+    }
+
+
+
+
+    const login = async (user) => {
+        const {email, password} = user
+        await axios
+            .post("http://3.238.56.40:8080/login", {email,password})
+            .then( async(response) => {
+                setToken(response.headers['authorization'])
+                await axios({
+                    method: 'get',
+                    url: `http://3.238.56.40:8080/client/findByEmail?email=${email}`,
+                    headers: {'Authorization': `${response.headers['authorization']}`}
+                }).then(function (response) {
+                    console.log(response.data.data)
+                    setUserSesion(response.data.data);
+                    setLoginUser(true)
+                    navigate("/Home")
+                    location.reload()
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            }).catch(function (error){
+            })
+    }
+
+    const createUserPost = async(user) => {
+        const { email, lastName, name, password,phone } = user;
+        await axios.post("http://3.238.56.40:8080/client/register", { email ,lastName , name, password , phone });
+        navigate("/")
+    }
+
+    useEffect(() => {
+        getProducts();
+        console.log((item.map(data => data.type)))
+        setUniqueSections([(item.map(data => data.type))]);
+    }, []);
+
+    const getProducts = async () => {
+        await axios
+            .get("http://3.238.56.40:8080/product/list")
+            .then(({ data }) =>{
+                setItems(data.data)});
+
+    };
+
+
+
+    const addItem = async (product) => {
+        const { description,name, quantity, price,productTypeId,cakePicture,type } = product;
+
+        await axios.post("http://3.238.56.40:8080/product", { description ,name,price, quantity, productTypeId,cakePicture,type});
+
+        getSneakers()
+        getHodies()
+        getTShirts()
+        ;
+    };
+
+    const editItem = async (product) => {
+        const { id, description, name, quantity, price } = product;
+        await axios
+            .put(`http://3.238.56.40:8080/product/${id}`, { description , name, price, quantity });
+
+        getSneakers()
+        getHodies()
+        getTShirts()
+    };
+    const delateItem = async (id) => {
+        await axios
+            .delete(`http://3.238.56.40:8080/product/${id}`)
+
+
+        getSneakers()
+        getHodies()
+        getTShirts()
+        location.reload()
+    };
+
 
     return(
 
@@ -116,12 +197,23 @@ export const GeneralProvider = ({children}) => {
 
 
         <GeneralContext.Provider value={{
+            addItemToCart,
+            removeItemsToCart,
+            sneakers,
+            hodies,
+            tShirts,
+            login,
             setLoginUser,
             setUserSesion,
             setToken,
+            item,
+            addItem,
+            editItem,
             delateItem,
             cartItems,
             setCartItems,
+            createUserPost,
+            uniqueSections
         }}>
             {children}
         </GeneralContext.Provider>
@@ -129,4 +221,14 @@ export const GeneralProvider = ({children}) => {
 
 
     )
+
+
+
+
+
+
+
+
+
+
 }
