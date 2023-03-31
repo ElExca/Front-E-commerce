@@ -47,6 +47,68 @@ export const GeneralProvider = ({children}) => {
     useEffect(() =>{
         localStorage.setItem("token", JSON.stringify(token))
     }, [token]);
+    
+    const [sneakers, setSneakers] = useState([]);
+    const [hodies, setHodies] = useState([]);
+    const [tShirts, setTshirts] = useState([]);
+    const [item, setItems] = useState([]);
+    const [uniqueSections, setUniqueSections] = useState([]);
+
+    const [cartItems, setCartItems] = useState(  () => {
+        try {
+            const ProductsInLocalStorage = localStorage.getItem('cartProducts')
+            return ProductsInLocalStorage ? JSON.parse(ProductsInLocalStorage) : []
+        } catch (error) {
+            return [];
+        }
+    });
+    console.log(cartItems)
+
+    useEffect(() =>{
+        localStorage.setItem("cartProducts", JSON.stringify(cartItems))
+    }, [cartItems]);
+
+    const addItemToCart = (item) => {
+        const inCart = cartItems.find(
+            (itemInCart) => itemInCart.id === item.id
+        );
+
+        if(inCart) {
+
+            setCartItems(
+                cartItems.map((itemInCart) => {
+                    if(itemInCart.id === item.id ) {
+                        return {...inCart, amount: inCart.amount + 1}
+
+                    }
+                    else return itemInCart
+                })
+            )
+        } else {
+            setCartItems([...cartItems, {...item, amount: 1}]);
+        }
+    }
+
+    const removeItemsToCart = (item) => {
+        console.log(item)
+        const inCart = cartItems.find(
+            (itemInCart) => itemInCart.id === item.id
+        )
+        console.log(inCart)
+
+        if (inCart.amount === 1) {
+            setCartItems(
+                cartItems.filter((itemInCart) => itemInCart.id !== item.id)
+            )
+        } else {
+            setCartItems(
+                cartItems.map((itemInCart)=>{
+                    console.log(itemInCart)
+                    if ( itemInCart.id === item.id) {
+                        return {...inCart, amount: inCart.amount -1}
+                    } else return itemInCart
+            }))
+        }
 
     return(
 
@@ -57,6 +119,9 @@ export const GeneralProvider = ({children}) => {
             setLoginUser,
             setUserSesion,
             setToken,
+            delateItem,
+            cartItems,
+            setCartItems,
         }}>
             {children}
         </GeneralContext.Provider>
