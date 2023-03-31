@@ -1,0 +1,78 @@
+{
+  "data": [
+    {
+      "id" : 1,
+      "name": "Test 1",
+      "descriptiopn": "adwdawdawdwad 1",
+      "img": "https://www.pngmart.com/files/15/Apple-iPhone-11-PNG-Clipart.png",
+      "price": "500",
+      "section": "Ropa"
+    },
+    {
+      "id" : 7,
+      "name": "Test 1",
+      "descriptiopn": "adwdawdawdwad 1",
+      "img": "https://www.pngmart.com/files/15/Apple-iPhone-11-PNG-Clipart.png",
+      "price": "500",
+      "section": "Ropa"
+    },
+    {
+      "id" : 8,
+      "name": "Test 1",
+      "descriptiopn": "adwdawdawdwad 1",
+      "img": "https://www.pngmart.com/files/15/Apple-iPhone-11-PNG-Clipart.png",
+      "price": "500",
+      "section": "Ropa"
+    },
+    {
+      "id" : 9,
+      "name": "Test 1",
+      "descriptiopn": "adwdawdawdwad 1",
+      "img": "https://www.pngmart.com/files/15/Apple-iPhone-11-PNG-Clipart.png",
+      "price": "500",
+      "section": "Ropa"
+    },
+    {
+      "id" : 2,
+      "name": "Test 2",
+      "descriptiopn": "adwdawdawdwad 1",
+      "img": "https://www.pngmart.com/files/15/Apple-iPhone-11-PNG-Clipart.png",
+      "price": "500",
+      "section": "Ropa"
+    },
+    {
+      "id" : 3,
+      "name": "Test 3",
+      "descriptiopn": "adwdawdawdwad 1",
+      "img": "https://picsum.photos/200",
+      "price": "500",
+      "section": "Tenis"
+    },
+    {
+      "id" : 4,
+      "name": "Test 4",
+      "descriptiopn": "adwdawdawdwad 1",
+      "img": "https://picsum.photos/200",
+      "price": "500",
+      "section": "Tenis"
+    },
+    {
+      "id" : 5,
+      "name": "Test 5",
+      "descriptiopn": "adwdawdawdwad 1",
+      "img": "https://picsum.photos/200",
+      "price": "500",
+      "section": "Pesca"
+    },
+    {
+      "id" : 6,
+      "name": "Test 6",
+      "descriptiopn": "adwdawdawdwad 1",
+      "img": "https://picsum.photos/200",
+      "price": "500",
+      "section": "Pesca"
+    }
+
+  ]
+}
+

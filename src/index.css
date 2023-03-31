@@ -1,0 +1,21 @@
+@font-face {
+    font-family: Slovic;
+    font-display: swap;
+    src: url("https://yoksel.github.io/variable-fonts/assets/fonts/slovic/Variable/Slovic_Demo_VarGX.ttf") format("truetype");
+}
+
+
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.App{
+    height: 100vh;
+}
+.back{
+ background: url("https://static.zara.net/photos///contents/mkt/spots/ss23-north-woman-dress-time/subhome-xmedia-13//w/1153/IMAGE-landscape-fill-9602e46b-d90f-4a51-8d9d-1808986f65d0-default_0.jpg?ts=1679932995083");
+ background-repeat: no-repeat;
+ background-size: cover;
+}
