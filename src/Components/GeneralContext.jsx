@@ -36,6 +36,18 @@ export const GeneralProvider = ({children}) => {
     const instance = axios.create();
     instance.defaults.headers.common['Authorization'] = token;
     axios.defaults.headers.common['Authorization'] = token;
+    
+    useEffect(() =>{
+        localStorage.setItem("LoginUser", JSON.stringify(loginUser))
+    }, [loginUser]);
+
+    useEffect(() =>{
+        localStorage.setItem("LoginUserSesion", JSON.stringify(userSesion))
+    }, [userSesion]);
+    useEffect(() =>{
+        localStorage.setItem("token", JSON.stringify(token))
+    }, [token]);
+
     return(
 
 
